@@ -320,30 +320,153 @@ Using JSON file storage (ADR-001), need to decide:
 
 ---
 
+## ADR-004: CLI Interface for Terminal Usage
+
+**Date:** 2026-01-31  
+**Status:** Proposed (Future Enhancement)  
+**Deciders:** Project Team
+
+### Context
+
+User wants ability to interact with Quick Notes API directly from terminal using CLI commands, such as:
+```bash
+notes add "My note title" --content "Note content"
+notes list
+notes search "react"
+notes delete abc123
+```
+
+**Options:**
+
+1. **Separate CLI Client** - Standalone tool that calls REST API
+2. **Nest.js Console** - Built-in commands using `nestjs-console` package
+3. **Hybrid** - CLI can work online (API) or offline (direct file access)
+
+### Decision
+
+**Build separate CLI client in Phase 6** that calls the REST API.
+
+**Optional:** Add offline mode that can directly access `data/notes.json` without API server.
+
+### Rationale
+
+**Why Separate CLI Client:**
+1. **Separation of Concerns** - API stays pure HTTP, CLI is separate concern
+2. **Distribution** - Can publish as `npm install -g @user/notes-cli`
+3. **Flexibility** - CLI can call local OR remote API
+4. **Technology Choice** - Can use Node.js CLI frameworks (Commander.js, yargs, oclif)
+5. **API-First** - Build API first, CLI consumes it (good practice)
+
+**Why NOT Nest.js Console (for now):**
+- Ties CLI to Nest.js app
+- Less portable
+- Requires full Nest app to run simple commands
+
+**Hybrid Approach Benefits:**
+- Online mode: `notes --api http://localhost:3000 list`
+- Offline mode: `notes --offline list` (direct file access)
+- Best of both worlds!
+
+### Consequences
+
+**Positive:**
+- ✅ Can use terminal for quick note operations
+- ✅ CLI is separate, installable tool
+- ✅ Can work offline (optional)
+- ✅ API remains focused on HTTP
+- ✅ Good learning: building CLI tools
+
+**Negative:**
+- ❌ Additional codebase to maintain
+- ❌ Need to keep CLI in sync with API changes
+- ❌ Requires API server for online mode
+
+**Neutral:**
+- CLI will be built AFTER API is stable (Phase 6)
+- Can start simple (just HTTP calls) then add offline mode
+- Good opportunity to learn CLI tool development
+
+### Implementation Approach
+
+**Phase 6: CLI Tool**
+
+**Tech stack:**
+- `commander` - CLI framework
+- `axios` - HTTP client (call API)
+- `chalk` - Colored terminal output
+- `inquirer` - Interactive prompts
+
+**Example structure:**
+```
+notes-cli/
+├── bin/
+│   └── notes               # Executable
+├── src/
+│   ├── commands/
+│   │   ├── add.ts
+│   │   ├── list.ts
+│   │   ├── search.ts
+│   │   └── delete.ts
+│   ├── api-client.ts       # HTTP wrapper
+│   ├── offline.ts          # Direct file access (optional)
+│   └── index.ts
+├── package.json
+└── README.md
+```
+
+**Example usage:**
+```bash
+# Install globally
+npm install -g notes-cli
+
+# Use CLI
+notes add "React Hooks" --content "useState, useEffect"
+notes list
+notes search "react"
+notes delete abc123
+
+# With custom API endpoint
+notes --api http://api.example.com list
+
+# Offline mode (optional)
+notes --offline list
+```
+
+### Related Decisions
+
+- Depends on ADR-002 (REST API)
+- May relate to ADR-010 (if adding CLI authentication)
+
+---
+
 ## 🔮 Future Decisions to Document
 
 When you encounter these situations, create a new ADR:
 
 ### Phase 2: Enhanced Features
 
-- **ADR-004:** Pagination Strategy (offset vs cursor)
-- **ADR-005:** Search Implementation (in-memory vs full-text)
+- **ADR-005:** Pagination Strategy (offset vs cursor)
+- **ADR-006:** Search Implementation (in-memory vs full-text)
 
 ### Phase 3: Database Migration
 
-- **ADR-006:** PostgreSQL vs MySQL vs MongoDB
-- **ADR-007:** TypeORM vs Prisma vs MikroORM
-- **ADR-008:** Migration Strategy (all at once vs gradual)
+- **ADR-007:** PostgreSQL vs MySQL vs MongoDB
+- **ADR-008:** TypeORM vs Prisma vs MikroORM
+- **ADR-009:** Migration Strategy (all at once vs gradual)
 
 ### Phase 4: Authentication
 
-- **ADR-009:** JWT vs Session-based auth
-- **ADR-010:** Password hashing algorithm (bcrypt vs argon2)
+- **ADR-010:** JWT vs Session-based auth
+- **ADR-011:** Password hashing algorithm (bcrypt vs argon2)
 
 ### Phase 5: GraphQL
 
-- **ADR-011:** GraphQL alongside REST or replace REST
-- **ADR-012:** Apollo Server vs Mercurius
+- **ADR-012:** GraphQL alongside REST or replace REST
+- **ADR-013:** Apollo Server vs Mercurius
+
+### Phase 6: CLI Tool
+
+- **ADR-004:** ✅ CLI Interface (documented above)
 
 ### General
 

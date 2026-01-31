@@ -15,21 +15,21 @@ Build a simple REST API for managing developer quick notes with:
 
 ## ✅ Step 0: Project Setup
 
-- [ ] **0.1 Initialize Nest.js project**
-  - [ ] Install Node.js v18+ (check with `node -v`)
-  - [ ] Install Nest CLI globally: `npm i -g @nestjs/cli`
-  - [ ] Create new project: `nest new .` (in current directory)
-  - [ ] Explore generated structure
-  - [ ] Run dev server: `npm run start:dev`
-  - [ ] Test default endpoint: `http://localhost:3000`
+- [x] **0.1 Initialize Nest.js project**
+  - [x] Install Node.js v18+ (check with `node -v`)
+  - [x] Install Nest CLI globally: `npm i -g @nestjs/cli`
+  - [x] Create new project: `nest new .` (in current directory)
+  - [x] Explore generated structure
+  - [x] Run dev server: `npm run start:dev`
+  - [x] Test default endpoint: `http://localhost:3000`
   - _Learn: Nest CLI, project structure, hot reload_
 
-- [ ] **0.2 Set up documentation**
+- [x] **0.2 Set up documentation**
   - [x] Create `.docs/` folder
   - [x] Create `.ai/` folder
   - [x] Write documentation files
-  - [ ] Create README.md in root
-  - [ ] Add .gitignore
+  - [x] Create README.md in root
+  - [x] Add .gitignore
   - _Learn: Documentation-driven development_
 
 - [ ] **0.3 Configure TypeScript**
@@ -44,27 +44,27 @@ Build a simple REST API for managing developer quick notes with:
 
 > **Goal:** Understand how Nest.js works BEFORE writing code
 
-- [ ] **1.1 Explore default generated code**
-  - [ ] Read `src/main.ts` - Application bootstrap
-  - [ ] Read `src/app.module.ts` - Root module
-  - [ ] Read `src/app.controller.ts` - Default controller
-  - [ ] Read `src/app.service.ts` - Default service
-  - [ ] Understand the connection: main → module → controller → service
+- [x] **1.1 Explore default generated code**
+  - [x] Read `src/main.ts` - Application bootstrap
+  - [x] Read `src/app.module.ts` - Root module
+  - [x] Read `src/app.controller.ts` - Default controller
+  - [x] Read `src/app.service.ts` - Default service
+  - [x] Understand the connection: main → module → controller → service
   - _Learn: Application lifecycle, module imports, dependency injection_
 
-- [ ] **1.2 Experiment with default endpoint**
-  - [ ] Modify the default `getHello()` to return different text
-  - [ ] Add a new method in controller
-  - [ ] Add a new method in service
-  - [ ] See hot reload in action
+- [x] **1.2 Experiment with default endpoint**
+  - [x] Modify the default `getHello()` to return different text
+  - [x] Add a new method in controller
+  - [x] Add a new method in service
+  - [x] See hot reload in action
   - _Learn: Controller-Service pattern, hot reload_
 
-- [ ] **1.3 Understand decorators**
-  - [ ] What does `@Module()` do?
-  - [ ] What does `@Controller()` do?
-  - [ ] What does `@Injectable()` do?
-  - [ ] What does `@Get()` do?
-  - [ ] Compare to Angular decorators
+- [x] **1.3 Understand decorators**
+  - [x] What does `@Module()` do?
+  - [x] What does `@Controller()` do?
+  - [x] What does `@Injectable()` do?
+  - [x] What does `@Get()` do?
+  - [x] Compare to Angular decorators
   - _Learn: Decorator pattern, metadata_
 
 **Checkpoint:** Can you explain the flow from HTTP request → Controller → Service → Response?
@@ -75,18 +75,18 @@ Build a simple REST API for managing developer quick notes with:
 
 > **Goal:** Design the data structures BEFORE implementation
 
-- [ ] **2.1 Define Note entity**
-  - [ ] Create `src/notes/entities/note.entity.ts`
-  - [ ] Define `Note` interface with all fields
-  - [ ] Consider: id, title, content, tags, createdAt, updatedAt
-  - [ ] Document field purposes
+- [x] **2.1 Define Note entity**
+  - [x] Create `src/notes/entities/note.entity.ts`
+  - [x] Define `Note` interface with all fields
+  - [x] Consider: id, title, content, tags, createdAt, updatedAt
+  - [x] Document field purposes
   - _Learn: Data modeling, TypeScript interfaces_
 
-- [ ] **2.2 Design DTOs (Data Transfer Objects)**
-  - [ ] Create `src/notes/dto/create-note.dto.ts`
-  - [ ] Create `src/notes/dto/update-note.dto.ts`
-  - [ ] Understand why separate DTO from Entity
-  - [ ] Plan validation rules
+- [x] **2.2 Design DTOs (Data Transfer Objects)**
+  - [x] Create `src/notes/dto/create-note.dto.ts`
+  - [x] Create `src/notes/dto/update-note.dto.ts`
+  - [x] Understand why separate DTO from Entity
+  - [x] Plan validation rules
   - _Learn: DTO pattern, separation of concerns_
 
 **Checkpoint:** Can you explain the difference between Entity and DTO?
@@ -447,6 +447,26 @@ Build a simple REST API for managing developer quick notes with:
 - [ ] Full-text search with Elasticsearch
 - [ ] Note sharing
 - [ ] Note history/versioning
+
+### Phase 6: CLI Tool
+
+- [ ] Create separate CLI package (`notes-cli`)
+- [ ] Implement commands:
+  - [ ] `notes add "title" --content "content"` - Create note
+  - [ ] `notes list` - List all notes
+  - [ ] `notes search "query"` - Search notes
+  - [ ] `notes get <id>` - Get specific note
+  - [ ] `notes update <id>` - Update note
+  - [ ] `notes delete <id>` - Delete note
+- [ ] Use `commander` for CLI framework
+- [ ] Use `axios` to call REST API
+- [ ] Add `chalk` for colored output
+- [ ] Support configuration: `--api <url>` to specify API endpoint
+- [ ] Optional: Add offline mode (direct file access)
+- [ ] Publish to npm as installable global package
+- [ ] _Learn: CLI tool development, npm publishing_
+
+**See:** ADR-004 in `.docs/decisions.md` for architectural decision details
 
 ---
 
