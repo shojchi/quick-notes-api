@@ -97,23 +97,23 @@ Build a simple REST API for managing developer quick notes with:
 
 > **Goal:** Use Nest CLI to scaffold the Notes feature
 
-- [ ] **3.1 Generate Notes module**
-  - [ ] Run: `nest g module notes`
-  - [ ] Examine what was created
-  - [ ] Check `app.module.ts` - module was auto-imported!
+- [x] **3.1 Generate Notes module**
+  - [x] Run: `nest g module notes`
+  - [x] Examine what was created
+  - [x] Check `app.module.ts` - module was manually imported!
   - _Learn: Nest CLI generators, module registration_
 
-- [ ] **3.2 Generate Notes controller**
-  - [ ] Run: `nest g controller notes`
-  - [ ] Examine generated file and test file
-  - [ ] Check `notes.module.ts` - controller was auto-registered!
+- [x] **3.2 Generate Notes controller**
+  - [x] Run: `nest g controller notes`
+  - [x] Examine generated file and test file
+  - [x] Check `notes.module.ts` - controller was auto-registered!
   - _Learn: Controller scaffolding, automatic registration_
 
-- [ ] **3.3 Generate Notes service**
-  - [ ] Run: `nest g service notes`
-  - [ ] Examine generated file and test file
-  - [ ] Check `notes.module.ts` - service was auto-registered!
-  - [ ] Check controller - service is injectable!
+- [x] **3.3 Generate Notes service**
+  - [x] Run: `nest g service notes`
+  - [x] Examine generated file and test file
+  - [x] Check `notes.module.ts` - service was auto-registered!
+  - [x] Check controller - service is injectable!
   - _Learn: Service scaffolding, dependency injection_
 
 **Checkpoint:** Understand the relationship: Module → Controller → Service
@@ -124,26 +124,26 @@ Build a simple REST API for managing developer quick notes with:
 
 > **Goal:** Create type-safe, validated data contracts
 
-- [ ] **4.1 Install validation packages**
-  - [ ] Run: `npm install class-validator class-transformer`
-  - [ ] Understand what each package does
+- [x] **4.1 Install validation packages**
+  - [x] Run: `npm install class-validator class-transformer`
+  - [x] Understand what each package does
   - _Learn: npm packages, dependency management_
 
-- [ ] **4.2 Create CreateNoteDto**
-  - [ ] Define class with properties: title, content, tags
-  - [ ] Add validation decorators (@IsString, @IsNotEmpty, etc.)
-  - [ ] Add @ApiProperty() for Swagger (later)
+- [x] **4.2 Create CreateNoteDto**
+  - [x] Define class with properties: title, content, tags
+  - [x] Add validation decorators (@IsString, @IsNotEmpty, etc.)
+  - [x] Add @ApiProperty() for Swagger (later)
   - _Learn: class-validator, decorators_
 
-- [ ] **4.3 Create UpdateNoteDto**
-  - [ ] Use `PartialType(CreateNoteDto)` utility
-  - [ ] Understand why all fields are optional in update
+- [x] **4.3 Create UpdateNoteDto**
+  - [x] Use `PartialType(CreateNoteDto)` utility
+  - [x] Understand why all fields are optional in update
   - _Learn: Type utilities, partial updates_
 
-- [ ] **4.4 Enable ValidationPipe globally**
-  - [ ] Add ValidationPipe in `main.ts`
-  - [ ] Configure options (whitelist, transform)
-  - [ ] Test with invalid data
+- [x] **4.4 Enable ValidationPipe globally**
+  - [x] Add ValidationPipe in `main.ts`
+  - [x] Configure options (whitelist, transform)
+  - [x] Test with invalid data
   - _Learn: Global pipes, validation configuration_
 
 **Checkpoint:** Can you explain what happens when invalid data is sent to an endpoint?
@@ -154,7 +154,7 @@ Build a simple REST API for managing developer quick notes with:
 
 > **Goal:** Create REST API endpoints following conventions
 
-- [ ] **5.1 Create Note - POST /notes**
+- [x] **5.1 Create Note - POST /notes**
 
   ```typescript
   @Post()
@@ -163,12 +163,12 @@ Build a simple REST API for managing developer quick notes with:
   }
   ```
 
-  - [ ] Implement method signature
-  - [ ] Use `@Body()` decorator
-  - [ ] Call service method
+  - [x] Implement method signature
+  - [x] Use `@Body()` decorator
+  - [x] Call service method (returns mock data for now)
   - _Learn: POST requests, request body handling_
 
-- [ ] **5.2 Get All Notes - GET /notes**
+- [x] **5.2 Get All Notes - GET /notes**
 
   ```typescript
   @Get()
@@ -177,11 +177,11 @@ Build a simple REST API for managing developer quick notes with:
   }
   ```
 
-  - [ ] Implement method
-  - [ ] Optional query parameter for search
+  - [x] Implement method
+  - [ ] Optional query parameter for search (later)
   - _Learn: GET requests, query parameters_
 
-- [ ] **5.3 Get One Note - GET /notes/:id**
+- [x] **5.3 Get One Note - GET /notes/:id**
 
   ```typescript
   @Get(':id')
@@ -190,11 +190,11 @@ Build a simple REST API for managing developer quick notes with:
   }
   ```
 
-  - [ ] Implement method
-  - [ ] Use `@Param()` decorator
+  - [x] Implement method
+  - [x] Use `@Param()` decorator
   - _Learn: Route parameters, dynamic routing_
 
-- [ ] **5.4 Update Note - PATCH /notes/:id**
+- [x] **5.4 Update Note - PATCH /notes/:id**
 
   ```typescript
   @Patch(':id')
@@ -203,11 +203,12 @@ Build a simple REST API for managing developer quick notes with:
   }
   ```
 
-  - [ ] Implement method
-  - [ ] Use both @Param and @Body
+  - [x] Implement method
+  - [x] Use both @Param and @Body
   - _Learn: PATCH vs PUT, partial updates_
 
-- [ ] **5.5 Delete Note - DELETE /notes/:id**
+- [x] **5.5 Delete Note - DELETE /notes/:id**
+
   ```typescript
   @Delete(':id')
   remove(@Param('id') id: string) {
@@ -215,7 +216,7 @@ Build a simple REST API for managing developer quick notes with:
   }
   ```
 
-  - [ ] Implement method
+  - [x] Implement method
   - _Learn: DELETE requests, resource deletion_
 
 **Checkpoint:** Test all endpoints with placeholder service methods (return fake data)
@@ -472,12 +473,29 @@ Build a simple REST API for managing developer quick notes with:
 
 ## 📊 Progress Tracking
 
-| Step | Description                | Status | Date       | Notes        |
-| ---- | -------------------------- | ------ | ---------- | ------------ |
-| 0.1  | Initialize Nest.js project | 🔵     | -          | -            |
-| 0.2  | Set up documentation       | 🟢     | 2026-01-30 | Docs created |
-| 0.3  | Configure TypeScript       | 🔵     | -          | -            |
-| ...  | ...                        | ...    | ...        | ...          |
+| Step | Description                    | Status | Date       | Notes                        |
+| ---- | ------------------------------ | ------ | ---------- | ---------------------------- |
+| 0.1  | Initialize Nest.js project     | 🟢     | 2026-01-30 | Project scaffolded           |
+| 0.2  | Set up documentation           | 🟢     | 2026-01-30 | Docs created                 |
+| 0.3  | Configure TypeScript           | 🔵     | -          | Using default strict config  |
+| 1.1  | Explore default generated code | 🟢     | 2026-01-30 | Understood bootstrap flow    |
+| 1.2  | Experiment with endpoints      | 🟢     | 2026-01-30 | Added /goodbye route         |
+| 1.3  | Understand decorators          | 🟢     | 2026-01-30 | Compared with Angular        |
+| 2.1  | Define Note entity             | 🟢     | 2026-01-31 | Created interface            |
+| 2.2  | Design DTOs                    | 🟢     | 2026-01-31 | Created Create & Update DTOs |
+| 3.1  | Generate Notes module          | 🟢     | 2026-01-31 | CLI generated                |
+| 3.2  | Generate Notes controller      | 🟢     | 2026-01-31 | CLI generated with tests     |
+| 3.3  | Generate Notes service         | 🟢     | 2026-01-31 | CLI generated with tests     |
+| 4.1  | Install validation packages    | 🟢     | 2026-01-31 | class-validator installed    |
+| 4.2  | Create CreateNoteDto           | 🟢     | 2026-01-31 | With full validation         |
+| 4.3  | Create UpdateNoteDto           | 🟢     | 2026-01-31 | Using PartialType            |
+| 4.4  | Enable ValidationPipe          | 🟢     | 2026-01-31 | Globally configured          |
+| 5.1  | POST /notes endpoint           | 🟢     | 2026-01-31 | Create note (mock)           |
+| 5.2  | GET /notes endpoint            | 🟢     | 2026-01-31 | Get all notes (mock)         |
+| 5.3  | GET /notes/:id endpoint        | 🟢     | 2026-01-31 | Get one note (mock)          |
+| 5.4  | PATCH /notes/:id endpoint      | 🟢     | 2026-01-31 | Update note (mock)           |
+| 5.5  | DELETE /notes/:id endpoint     | 🟢     | 2026-01-31 | Delete note (mock)           |
+| 6.x  | Implement Service Logic        | 🟡     | -          | Next up!                     |
 
 **Legend:**
 
