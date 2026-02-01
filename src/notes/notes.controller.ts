@@ -9,7 +9,7 @@ export class NotesController {
 
   @Post()
   createNote(@Body() createNoteDto: CreateNoteDto) {
-    return createNoteDto;
+    return this.notesService.create(createNoteDto);
   }
 
   @Get()
