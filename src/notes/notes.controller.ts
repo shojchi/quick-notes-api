@@ -14,21 +14,21 @@ export class NotesController {
 
   @Get()
   getAllNotes() {
-    return [];
+    return this.notesService.findAll();
   }
 
   @Get(':id')
   getSpecificNote(@Param('id') id: string) {
-    return { id, message: `Returning note ${id}` };
+    return this.notesService.findOne(id);
   }
 
   @Patch(':id')
   updateNote(@Param('id') id: string, @Body() updateNoteDto: UpdateNoteDto) {
-    return { id, ...updateNoteDto };
+    return this.notesService.update(id, updateNoteDto);
   }
 
   @Delete(':id')
   deleteNote(@Param('id') id: string) {
-    return { message: `Deleted note ${id}` };
+    return this.notesService.remove(id);
   }
 }
